@@ -2,7 +2,7 @@
   "name": "biogi-resume",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://mazinalmaskari.com/mzn_CV",
+  "homepage": "https://mazinalmaskari.com",
   "dependencies": {
     "@fancyapps/fancybox": "^3.5.7",
     "@fancyapps/ui": "^5.0.36",
