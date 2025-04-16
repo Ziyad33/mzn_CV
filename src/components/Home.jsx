@@ -214,7 +214,7 @@ const Home = () => {
                 Resume
               </a>
             </li>
-            {/* <li
+            <li
               className={`active-menu-action ${
                 activeLink === "services" ? "active" : ""
               }`}
@@ -228,7 +228,7 @@ const Home = () => {
                 Services
               </a>
             </li>
-            <li
+            {/*<li
               className={`active-menu-action ${
                 activeLink === "portfolio" ? "active" : ""
               }`}
@@ -288,7 +288,7 @@ const Home = () => {
           </ul>
         </div>
         <div>
-          <div id="wrap">
+          {/* <div id="wrap">
             <Link
               to={CV}
               rel="noreferrer"
@@ -313,7 +313,7 @@ const Home = () => {
               <span className="title">Download CV</span>
               <span className="title-hover">Click Here</span>
             </Link>{" "}
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -330,29 +330,28 @@ const Home = () => {
                 {secondTexts[secondTextIndex]}
               </h3>
               <p className="best fade_down">
-                We appreciate your trust greatly our clients choose us & our
-                products because they know we are the best.
+                Expert in React, Angular, Node.js, .NET, and SQL. I develop full-stack solutions that power digital transformation across industries.
               </p>
               <div className="section-one-btns-main fade_down">
-                <div className="wrapper">
+                {/* <div className="wrapper">
                   <Link className="btn-hover" to="#">
                     View Work
                   </Link>
-                </div>
+                </div> */}
                 <div className="wrapper">
-                  <Link className="btn-hover btn-hover2" to="#">
+                  <a className="btn-hover btn-hover2" href="#contact">
                     Contact Me
-                  </Link>
+                  </a>
                 </div>
               </div>
             </div>
             <div className="col-xxl-6 col-lg-6 position-relative">
               <img className="flower" src={FlowerImg} alt="flower" />
-              <img
+              {/* <img
                 className="circular-img"
                 src={CircularImg}
                 alt="circular-img"
-              />
+              /> */}
               <img
                 className="jessica-main-img zoom_in"
                 src={JessicaMainImg}

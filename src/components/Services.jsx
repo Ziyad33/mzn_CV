@@ -1,9 +1,10 @@
 import React from "react";
-import UiUxSvg from "../assets/images/svg/ui-ux.svg";
 import DownArrow from "../assets/images/svg/down-arrow.svg";
-import VisualBranding from "../assets/images/svg/visual-branding.svg";
 import WebDevelopement from "../assets/images/svg/web-development.svg";
 import AppDevelopement from "../assets/images/svg/app-development.svg";
+import backendDev from "../assets/images/svg/backendDev.svg"
+import fullstackDev from "../assets/images/svg/fullstackDev.svg"
+import performanceDev from "../assets/images/svg/performanceDev.svg"
 import GalleryImg2 from "../assets/images/gallery/gallery-img2.jpg";
 import { Link } from "react-router-dom";
 
@@ -11,31 +12,29 @@ const Services = () => {
   return (
     <>
       {/* <!-- ====================================== Section Services ===================================== --> */}
-      {/* <section className="Services-section" id="services">
+      <section className="Services-section" id="services">
         <div className="heading-container">
           <h2 className="section-heading-text coding-skill-text fade_up">
-            Services.
+            
           </h2>
           <div className="line"></div>
         </div>
         <h3 className="services-product-text fade_up">
-          BUILDING DIGITAL PRODUCT WITH BETTER EXPERIENCE
+          BUILDING SMART, SCALABLE SOLUTIONS FROM FRONTEND TO BACKEND
         </h3>
         <p className="visoion-text fade_up">
-          Our vision is to be a trailblazing force in the world of web design
-          and development, recognized for our unwavering commitment to
-          excellence, integrity, and customer satisfaction.
+          I’m a Full-Stack Software Developer with a passion for creating reliable, high-performance applications. 
+With a strong foundation in both frontend and backend technologies, I specialize in building seamless user experiences, clean codebases, and efficient systems — from design to deployment.
         </p>
         <div className="row services-row">
           <div className="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-sm-6 services-column fade_up">
             <Link to="#services-popup">
               <div className="services-img">
-                <img src={UiUxSvg} alt="ui-ux" />
+                <img src={WebDevelopement} alt="ui-ux" />
               </div>
-              <p className="services-text">UI/UX DESIGN</p>
+              <p className="services-text">Frontend Development</p>
               <p className="molestie">
-                Hendrerit molestie consectet molestie id dui in eget. Lectus
-                amet diam amet ultricies convallis ultricies enim.
+                Building responsive, user-friendly interfaces using React, Angular, and modern JavaScript frameworks.
               </p>
               <img
                 className="down-arrow-svg"
@@ -47,12 +46,11 @@ const Services = () => {
           <div className="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-sm-6 services-column fade_up">
             <Link to="#services-popup">
               <div className="services-img services-img2">
-                <img src={VisualBranding} alt="visual-branding" />
+                <img src={backendDev} alt="visual-branding" />
               </div>
-              <p className="services-text services-text2">VISUAL BRANDING</p>
+              <p className="services-text services-text2">Backend Development</p>
               <p className="molestie">
-                A aliquam hac quis habitant dolor nunc metus sed. Sed commodo
-                mauris purus molestie fames.
+                Developing scalable APIs and server-side logic using Node.js, Express, .NET, and SQL/NoSQL databases.
               </p>
               <img
                 className="down-arrow-svg"
@@ -64,12 +62,11 @@ const Services = () => {
           <div className="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-sm-6 services-column fade_up">
             <Link to="#services-popup">
               <div className="services-img services-img3">
-                <img src={WebDevelopement} alt="web-development" />
+                <img src={fullstackDev} alt="web-development" />
               </div>
-              <p className="services-text services-text3">WEB DEVELOPMENT</p>
+              <p className="services-text services-text3">Full-Stack Integration</p>
               <p className="molestie">
-                Diam lacus faucibus eget dolor phasellus aliquam sit in. Eget
-                ultricies turpis elit augue cras mauris lorem mauris.
+                Integrating frontend and backend systems into seamless user experiences with CI/CD and cloud deployment.
               </p>
               <img
                 className="down-arrow-svg"
@@ -81,12 +78,11 @@ const Services = () => {
           <div className="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-sm-6 services-column fade_up">
             <Link to="#services-popup">
               <div className="services-img services-img4">
-                <img src={AppDevelopement} alt="app-development" />
+                <img src={performanceDev} alt="app-development" />
               </div>
-              <p className="services-text services-text4">APP DEVELOPMENT</p>
+              <p className="services-text services-text4">Performance Optimization</p>
               <p className="molestie">
-                Sed dolor urna amet sagittis in morbi ullamcorper duis. Tempus
-                pulvinar amet sed eget id sem blandit.
+                Profiling and optimizing web applications for speed, SEO, and accessibility.
               </p>
               <img
                 className="down-arrow-svg"
@@ -96,7 +92,7 @@ const Services = () => {
             </Link>
           </div>
         </div>
-      </section> */}
+      </section>
       {/* <!-- ====================================== Section Services End ===================================== --> */}
       {/* <!-- ====================================== Section Services Pop Up ===================================== --> */}
       <div id="services-popup" className="popup-container">
