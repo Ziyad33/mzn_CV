@@ -159,7 +159,7 @@ const Home = () => {
             <Link to="mailto:mzn.93.20@gmail.com" className="profile-media-icons">
               <img src={EmailSvg} alt="email-svg" />
             </Link>
-            <Link to="https://www.behance.net" className="profile-media-icons">
+            {/* <Link to="https://www.behance.net" className="profile-media-icons">
               <img src={BehanceSvg} alt="behance-svg" />
             </Link>
             <Link to="https://dribbble.com" className="profile-media-icons">
@@ -167,7 +167,7 @@ const Home = () => {
             </Link>
             <Link to="https://medium.com" className="profile-media-icons">
               <img src={MediumSvg} alt="medium-svg" />
-            </Link>
+            </Link> */}
           </div>
         </div>
         <div className="menu-list-main">
@@ -214,7 +214,7 @@ const Home = () => {
                 Resume
               </a>
             </li>
-            <li
+            {/* <li
               className={`active-menu-action ${
                 activeLink === "services" ? "active" : ""
               }`}
@@ -269,7 +269,7 @@ const Home = () => {
                 <img src={BlogSvg} alt="home-svg" />
                 Blog
               </a>
-            </li>
+            </li> */}
             <li
               className={`active-menu-action ${
                 activeLink === "contact" ? "active" : ""
@@ -358,7 +358,7 @@ const Home = () => {
                 src={JessicaMainImg}
                 alt="jessica-main-img"
               />
-              <div className="worked-box">
+              {/* <div className="worked-box">
                 <p className="worked-more">Worked with more than 100 people</p>
                 <div className="client-img-main position-relative">
                   <img
@@ -383,12 +383,12 @@ const Home = () => {
                   />
                   <p className="worked-more worked-more2"> 100+ Clients</p>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </section>
         {/* <!-- ====================================== Section Marquee ===================================== --> */}
-        <section className="Marquee-main overflow-hidden">
+        {/* <section className="Marquee-main overflow-hidden">
           <h3 className="fade_up">Trusted by World Leading Brands</h3>
           <div className="logos logos2">
             <div className="logos-slide">
@@ -459,7 +459,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
         {/* <!-- ====================================== Section Marquee End ===================================== --> */}
         {/* <!-- ====================================== Section About ===================================== --> */}
         <AboutSection />

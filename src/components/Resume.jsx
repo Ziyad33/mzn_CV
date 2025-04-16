@@ -261,7 +261,7 @@ const Resume = () => {
       </section>
       {/* <!-- ====================================== Section Coding Skill End ===================================== --> */}
       {/* <!-- ====================================== Section Award ===================================== --> */}
-      <section className="awards-section overflow-hidden">
+      {/* <section className="awards-section overflow-hidden">
         <div className="heading-container">
           <h2 className="section-heading-text coding-skill-text fade_up">
             Technologies.
@@ -382,7 +382,7 @@ const Resume = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
       {/* <!-- ====================================== Section Award End ===================================== --> */}
     </>
   );

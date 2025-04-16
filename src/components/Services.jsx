@@ -11,7 +11,7 @@ const Services = () => {
   return (
     <>
       {/* <!-- ====================================== Section Services ===================================== --> */}
-      <section className="Services-section" id="services">
+      {/* <section className="Services-section" id="services">
         <div className="heading-container">
           <h2 className="section-heading-text coding-skill-text fade_up">
             Services.
@@ -96,7 +96,7 @@ const Services = () => {
             </Link>
           </div>
         </div>
-      </section>
+      </section> */}
       {/* <!-- ====================================== Section Services End ===================================== --> */}
       {/* <!-- ====================================== Section Services Pop Up ===================================== --> */}
       <div id="services-popup" className="popup-container">
