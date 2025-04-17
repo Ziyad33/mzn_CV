@@ -15,7 +15,7 @@ const Services = () => {
       <section className="Services-section" id="services">
         <div className="heading-container">
           <h2 className="section-heading-text coding-skill-text fade_up">
-            
+            What I Do.
           </h2>
           <div className="line"></div>
         </div>

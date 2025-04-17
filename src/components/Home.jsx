@@ -39,10 +39,10 @@ import CV from "../assets/pdf/olivia_resume.pdf";
 import { Link } from "react-router-dom";
 const Home = () => {
   //Text
-  const firstTexts = ["Designer", "Developer", "Freelancer"];
+  const firstTexts = ["Problem Solver", "Developer", "Freelancer"];
   const secondTexts = [
     "Freelancer",
-    "Back-End Web Developer",
+    "Back-End Developer",
     "Full Stack Developer",
   ];
   const intervalTime = 600;
@@ -225,7 +225,7 @@ const Home = () => {
                 onClick={(e) => handleClick(e, "services")}
               >
                 <img src={ServicesSvg} alt="home-svg" />
-                Services
+                What I Do
               </a>
             </li>
             {/*<li
@@ -330,7 +330,7 @@ const Home = () => {
                 {secondTexts[secondTextIndex]}
               </h3>
               <p className="best fade_down">
-                Expert in React, Angular, Node.js, .NET, and SQL. I develop full-stack solutions that power digital transformation across industries.
+                Expert in Angular, React, Node.js, .NET, and SQL. I develop full-stack solutions that power digital transformation across industries.
               </p>
               <div className="section-one-btns-main fade_down">
                 {/* <div className="wrapper">

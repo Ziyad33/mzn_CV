@@ -33,7 +33,6 @@ const AboutSection = () => {
           Hi, I'm <span>Mazin Musallam</span>, a passionate and results-driven Full-Stack Software Developer with a Bachelor’s Degree in Computer Science (Security & Forensics). I thrive on solving complex challenges and delivering innovative solutions that make a real-world impact. Currently, I am honing my skills at iNNOVTEQ, where I contribute to cutting-edge projects at BSP in Brunei.
 With expertise in both front-end and back-end development, I bring to the table extensive experience in building responsive web applications, mobile apps, and server-side systems. My technical stack includes Angular, Node.js, MongoDB, TypeScript, and more. I’m also skilled in virtual and augmented reality development, reflecting my enthusiasm for emerging technologies.
 Beyond coding, I believe in continuous learning and professional growth. For me, exploring new tools and technologies every year is not just a goal but a personal commitment. Outside of work, I’m a lifelong learner and enjoy creating meaningful digital experiences.
-Let’s build something extraordinary together.
         </p>
         <div className="about-detail-main">
           <p className="about-detail">Name</p>
