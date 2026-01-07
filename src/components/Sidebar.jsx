@@ -31,6 +31,14 @@ const Sidebar = () => {
                     <span className="info-label">Experience:</span>
                     <span className="info-value">7+ Years</span>
                 </div>
+                <div className="info-item">
+                    <span className="info-label">Phone:</span>
+                    <span className="info-value"><a href="tel:+96893373293" style={{ color: '#00E5FF' }}>+968 93373293</a></span>
+                </div>
+                <div className="info-item">
+                    <span className="info-label">Email:</span>
+                    <span className="info-value"><a href="mailto:mzn.93.20@gmail.com" style={{ color: '#00E5FF' }}>mzn.93.20@gmail.com</a></span>
+                </div>
             </div>
 
             {/* Skills Section */}

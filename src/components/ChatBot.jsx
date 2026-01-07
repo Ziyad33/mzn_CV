@@ -108,7 +108,7 @@ const ChatBot = () => {
                         borderBottom: '1px solid rgba(255,255,255,0.1)',
                     }}>
                         <h4 style={{ color: '#fff', margin: 0, fontSize: '16px' }}>Ask Mazin's AI</h4>
-                        <p style={{ color: '#888', margin: 0, fontSize: '12px' }}>Powered by GPT-4</p>
+                        <p style={{ color: '#888', margin: 0, fontSize: '12px' }}>Powered by Gemini</p>
                     </div>
 
                     {/* Messages */}

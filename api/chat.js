@@ -1,6 +1,5 @@
 // Vercel Edge Function for AI Chat - Using Google Gemini (FREE)
 // API Key: Set GEMINI_API_KEY in Vercel Dashboard → Settings → Environment Variables
-// Get your free key at: https://aistudio.google.com/app/apikey
 
 export const config = {
     runtime: 'edge',
@@ -13,110 +12,60 @@ const corsHeaders = {
     'Access-Control-Allow-Headers': 'Content-Type',
 };
 
-// Mazin's context
-const mazinContext = `You are Mazin's AI assistant on his portfolio website. Answer questions about him professionally and helpfully. Keep responses concise (2-3 sentences max).
-
+const mazinContext = `You are Mazin's AI assistant. Answer professionally and concisely.
 About Mazin Al-Maskari:
-- Full-Stack Developer turned AI Engineer with 7+ years of experience
-- Nationality: Omani, based in Brunei
-- Works at Innovateq for Brunei Shell Petroleum (BSP)
-
-Skills:
-- AI/ML: LangChain, LlamaIndex, OpenAI API, RAG systems, Vector DBs, FastAPI
-- Frontend: React, Angular, Flutter
-- Backend: Node.js, .NET, Python
-
-Key Projects:
-- AI-Powered Image Analysis for BSP using FastAPI
-- RAG pipelines for semantic search
-- Autonomous AI Agents with LlamaIndex
-- Enterprise web apps for Brunei Shell Petroleum
-
-Education:
-- BSc Computer Science (Security & Forensics) - Dual Degree from Taylor's University Malaysia + UWE UK
-
+- Full-Stack Developer turned AI Engineer, 7+ years exp.
+- Based in Brunei, works at Innovateq (BSP).
+- Skills: AI/ML, LangChain, RAG, FastAPI, React, Angular.
+- Projects: AI Image Analysis, RAG Search, Autonomous Agents.
 Contact: mzn.93.20@gmail.com`;
 
 export default async function handler(req) {
-    // Handle CORS preflight
-    if (req.method === 'OPTIONS') {
-        return new Response(null, { status: 200, headers: corsHeaders });
-    }
-
-    if (req.method !== 'POST') {
-        return new Response(JSON.stringify({ error: 'Method not allowed' }), {
-            status: 405,
-            headers: { 'Content-Type': 'application/json', ...corsHeaders },
-        });
-    }
+    if (req.method === 'OPTIONS') return new Response(null, { status: 200, headers: corsHeaders });
+    if (req.method !== 'POST') return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405, headers: { 'Content-Type': 'application/json', ...corsHeaders } });
 
     try {
         const { message } = await req.json();
-
-        if (!message) {
-            return new Response(JSON.stringify({ error: 'Message is required' }), {
-                status: 400,
-                headers: { 'Content-Type': 'application/json', ...corsHeaders },
-            });
-        }
-
         const apiKey = process.env.GEMINI_API_KEY;
 
         if (!apiKey) {
-            return new Response(JSON.stringify({
-                response: 'The AI assistant is not configured yet. Please contact Mazin directly at mzn.93.20@gmail.com'
-            }), {
-                status: 200,
-                headers: { 'Content-Type': 'application/json', ...corsHeaders },
-            });
+            return new Response(JSON.stringify({ response: 'Config Error: GEMINI_API_KEY is missing in Vercel Env Vars.' }), { status: 200, headers: { 'Content-Type': 'application/json', ...corsHeaders } });
         }
 
-        // Google Gemini API call
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+        // Using gemini-1.5-flash-latest to resolve 404 error
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
+
+        const response = await fetch(url, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                contents: [
-                    {
-                        parts: [
-                            { text: `${mazinContext}\n\nUser question: ${message}\n\nRespond helpfully and concisely:` }
-                        ]
-                    }
-                ],
-                generationConfig: {
-                    temperature: 0.7,
-                    maxOutputTokens: 300,
-                }
-            }),
+                contents: [{ parts: [{ text: `${mazinContext}\n\nUser: ${message}\n\nAssistant:` }] }]
+            })
         });
 
         if (!response.ok) {
-            const errorData = await response.json().catch(() => ({}));
+            const errorData = await response.json().catch(e => ({ error: { message: response.statusText } }));
             console.error('Gemini API Error:', errorData);
+
+            // Return the ACTUAL error to the user for debugging
             return new Response(JSON.stringify({
-                response: 'I apologize, but I\'m having trouble connecting right now. Please email Mazin at mzn.93.20@gmail.com'
-            }), {
-                status: 200,
-                headers: { 'Content-Type': 'application/json', ...corsHeaders },
-            });
+                response: `API Error (${response.status}): ${JSON.stringify(errorData.error?.message || errorData)}`
+            }), { status: 200, headers: { 'Content-Type': 'application/json', ...corsHeaders } });
         }
 
         const data = await response.json();
-        const aiResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || 'I couldn\'t generate a response. Please try again.';
+        const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
 
-        return new Response(JSON.stringify({ response: aiResponse }), {
+        if (!text) {
+            return new Response(JSON.stringify({ response: 'Error: No response text generated by model.' }), { status: 200, headers: { 'Content-Type': 'application/json', ...corsHeaders } });
+        }
+
+        return new Response(JSON.stringify({ response: text }), {
             status: 200,
-            headers: { 'Content-Type': 'application/json', ...corsHeaders },
+            headers: { 'Content-Type': 'application/json', ...corsHeaders }
         });
+
     } catch (error) {
-        console.error('Error:', error);
-        return new Response(JSON.stringify({
-            response: 'Something went wrong. Please contact Mazin directly at mzn.93.20@gmail.com'
-        }), {
-            status: 200,
-            headers: { 'Content-Type': 'application/json', ...corsHeaders },
-        });
+        return new Response(JSON.stringify({ response: `Server Error: ${error.message}` }), { status: 200, headers: { 'Content-Type': 'application/json', ...corsHeaders } });
     }
 }
