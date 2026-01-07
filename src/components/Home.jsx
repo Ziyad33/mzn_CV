@@ -52,34 +52,45 @@ const Home = () => {
           <div className="experience-timeline">
             <div className="experience-item">
               <div className="experience-header">
-                <h4>Full-Stack Software Developer</h4>
-                <span className="experience-date">April 2023 - Present</span>
+                <h4>Full Stack Software Developer</h4>
+                <span className="experience-date">06/2023 - Present</span>
               </div>
-              <p className="experience-company">iNNOVATEQ - Brunei Shell Petroleum (BSP)</p>
+              <p className="experience-company">iNNOVATEQ (Innovation Technical Solutions) - Brunei Shell Petroleum (BSP)</p>
               <p className="experience-desc">
-                Building AI-powered enterprise applications, RAG systems, and LLM integrations for oil & gas operations.
+                Worked on delivering high-performance projects, focusing on database, backend, and frontend development, and was responsible for building and deploying pipelines.
               </p>
             </div>
 
             <div className="experience-item">
               <div className="experience-header">
-                <h4>Full-Stack Software Developer</h4>
-                <span className="experience-date">April 2021 - 2023</span>
+                <h4>Full-Stack Developer</h4>
+                <span className="experience-date">04/2021 - 06/2023</span>
               </div>
-              <p className="experience-company">iNNOVATEQ - Petroleum Development Oman (PDO)</p>
+              <p className="experience-company">iNNOVATEQ (Innovation Technical Solutions) - Petroleum Development Oman (PDO)</p>
               <p className="experience-desc">
-                Developed web applications and internal tools for petroleum operations using React, Angular, and Node.js.
+                Developed backend and frontend solutions following an agile methodology and continuous development approach, while delivering mobile solutions and maintaining optimal performance.
               </p>
             </div>
 
             <div className="experience-item">
               <div className="experience-header">
-                <h4>Full-Stack Virtual Reality Developer</h4>
-                <span className="experience-date">April 2019 - March 2021</span>
+                <h4>Virtual Reality Developer</h4>
+                <span className="experience-date">01/2019 - 04/2021</span>
               </div>
               <p className="experience-company">Military Technological College, Oman</p>
               <p className="experience-desc">
-                Created immersive VR training simulations and interactive applications for military education.
+                Developed ship systems simulations for students using Virtual Reality. Created a real-time server to connect students and the lecturer within a single classroom environment.
+              </p>
+            </div>
+
+            <div className="experience-item">
+              <div className="experience-header">
+                <h4>3D Design and Development Instructor</h4>
+                <span className="experience-date">11/2020 - 02/2021</span>
+              </div>
+              <p className="experience-company">Royal Airforce, Oman</p>
+              <p className="experience-desc">
+                Served as an instructor delivering advanced 3D development and simulation training to Royal Airforce personnel.
               </p>
             </div>
           </div>
@@ -92,7 +103,7 @@ const Home = () => {
             <div className="service-card">
               <h4>AI-Powered Image Analysis</h4>
               <p>
-                Built a computer vision system using FastAPI microservices to extract critical information from images, enhancing data extraction efficiency for enterprise clients.
+                Built a computer vision system using FastAPI microservices to extract critical information from images, enhancing data extraction efficiency.
               </p>
             </div>
 
