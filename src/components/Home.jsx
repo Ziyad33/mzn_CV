@@ -21,8 +21,8 @@ const Home = () => {
           <p className="hero-tagline">
             <code>&lt;code&gt;</code> I build AI agents, RAG systems, and LLM-powered applications. <code>&lt;/code&gt;</code>
           </p>
-          <a href="#services" className="hero-cta">
-            Explore My Work
+          <a href="#experience" className="hero-cta">
+            View My Journey
           </a>
         </section>
 
@@ -45,6 +45,45 @@ const Home = () => {
             <span className="stat-label">AI Specializations</span>
           </div>
         </div>
+
+        {/* Work Experience Section */}
+        <section className="experience-section" id="experience" style={{ padding: '60px' }}>
+          <h2 className="section-title">Work Experience</h2>
+          <div className="experience-timeline">
+            <div className="experience-item">
+              <div className="experience-header">
+                <h4>Full-Stack Software Developer</h4>
+                <span className="experience-date">April 2023 - Present</span>
+              </div>
+              <p className="experience-company">iNNOVATEQ - Brunei Shell Petroleum (BSP)</p>
+              <p className="experience-desc">
+                Building AI-powered enterprise applications, RAG systems, and LLM integrations for oil & gas operations.
+              </p>
+            </div>
+
+            <div className="experience-item">
+              <div className="experience-header">
+                <h4>Full-Stack Software Developer</h4>
+                <span className="experience-date">April 2021 - 2023</span>
+              </div>
+              <p className="experience-company">iNNOVATEQ - Petroleum Development Oman (PDO)</p>
+              <p className="experience-desc">
+                Developed web applications and internal tools for petroleum operations using React, Angular, and Node.js.
+              </p>
+            </div>
+
+            <div className="experience-item">
+              <div className="experience-header">
+                <h4>Full-Stack Virtual Reality Developer</h4>
+                <span className="experience-date">April 2019 - March 2021</span>
+              </div>
+              <p className="experience-company">Military Technological College, Oman</p>
+              <p className="experience-desc">
+                Created immersive VR training simulations and interactive applications for military education.
+              </p>
+            </div>
+          </div>
+        </section>
 
         {/* What I Do - Projects Section */}
         <section className="services-section-new" id="services">

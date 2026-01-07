@@ -347,6 +347,78 @@ body {
 }
 
 /*-----------------------[ SERVICES GRID ]------------------------*/
+/* Work Experience Section */
+.experience-section {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.experience-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.experience-item {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-left: 3px solid var(--accent-cyan);
+    border-radius: 0 12px 12px 0;
+    padding: 25px 30px;
+    transition: all 0.3s ease;
+}
+
+.experience-item:nth-child(even) {
+    border-left-color: var(--accent-purple);
+}
+
+.experience-item:hover {
+    border-left-width: 5px;
+    transform: translateX(5px);
+    box-shadow: 0 10px 30px rgba(0, 229, 255, 0.1);
+}
+
+.experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.experience-header h4 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-white);
+    margin: 0;
+}
+
+.experience-date {
+    font-size: 13px;
+    color: var(--accent-cyan);
+    font-weight: 500;
+}
+
+.experience-item:nth-child(even) .experience-date {
+    color: var(--accent-purple);
+}
+
+.experience-company {
+    font-size: 14px;
+    color: var(--accent-purple);
+    font-weight: 500;
+    margin-bottom: 10px !important;
+}
+
+.experience-item:nth-child(even) .experience-company {
+    color: var(--accent-cyan);
+}
+
+.experience-desc {
+    font-size: 13px;
+    color: var(--text-gray);
+    line-height: 1.6;
+    margin: 0 !important;
+}
+
 .services-section-new {
     padding: 60px;
 }
