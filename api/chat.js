@@ -5,62 +5,49 @@ export const config = {
     runtime: 'edge',
 };
 
-// Mazin's context - inlined for Edge Function compatibility
+// CORS headers
+const corsHeaders = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+};
+
+// Mazin's context
 const mazinContext = `
-You are Mazin's AI assistant on his portfolio website. Answer questions about him professionally and helpfully.
+You are Mazin's AI assistant on his portfolio website. Answer questions about him professionally and helpfully. Keep responses concise (2-3 sentences max).
 
 ## About Mazin Al-Maskari
 - Full-Stack Developer turned AI Engineer with 7+ years of experience
-- Nationality: Omani
-- Currently based in Brunei (Bandar Seri Begawan)
+- Nationality: Omani, based in Brunei
 - Works at Innovateq for Brunei Shell Petroleum (BSP)
 
-## Technical Expertise
-
-### AI & Machine Learning
-- Generative AI & LLMs (OpenAI, Claude, open-source models)
-- LangChain for building LLM applications
-- LlamaIndex for Agentic RAG systems
-- RAG (Retrieval-Augmented Generation) pipelines
-- Vector Databases (Pinecone, Chroma)
-- Prompt Engineering
-- FastAPI for serving AI models
-
-### Full-Stack Development
-- Frontend: React, Angular, TypeScript
-- Mobile: Flutter
-- Backend: Node.js, .NET, Express
-- Databases: MongoDB, SQL, PostgreSQL
+## Skills
+- AI/ML: LangChain, LlamaIndex, OpenAI API, RAG systems, Vector DBs, FastAPI
+- Frontend: React, Angular, Flutter
+- Backend: Node.js, .NET, Python
 
 ## Key Projects
-1. AI-Powered Image Analysis - Built computer vision system using FastAPI microservices for BSP
-2. Intelligent Search Systems - RAG pipelines for semantic search across documents
-3. Autonomous AI Agents - Multi-step reasoning agents with LlamaIndex
-4. Enterprise Web Applications - Angular/React apps for Brunei Shell Petroleum
+- AI-Powered Image Analysis for BSP
+- RAG pipelines for semantic search
+- Autonomous AI Agents with LlamaIndex
 
 ## Education
-- BSc Computer Science (Security & Forensics)
-- Dual Degree Award: Taylor's University, Malaysia + University of the West of England (UWE), UK
-
-## AI Learning Journey
-1. Phase 1: Foundation - Google Cloud GenAI + DeepLearning.AI Prompt Engineering
-2. Phase 2: Builder - LangChain for LLM Applications + Production Systems
-3. Phase 3: Agent - Agentic RAG with LlamaIndex
+- BSc Computer Science (Security & Forensics) - Dual Degree from Taylor's University Malaysia + UWE UK
 
 ## Contact
 - Email: mzn.93.20@gmail.com
-
-## Guidelines:
-- Be friendly and professional
-- Keep answers concise but informative
-- If asked about hiring/freelance, encourage them to reach out via email
 `;
 
 export default async function handler(req) {
+    // Handle CORS preflight
+    if (req.method === 'OPTIONS') {
+        return new Response(null, { status: 200, headers: corsHeaders });
+    }
+
     if (req.method !== 'POST') {
         return new Response(JSON.stringify({ error: 'Method not allowed' }), {
             status: 405,
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', ...corsHeaders },
         });
     }
 
@@ -70,7 +57,7 @@ export default async function handler(req) {
         if (!message) {
             return new Response(JSON.stringify({ error: 'Message is required' }), {
                 status: 400,
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json', ...corsHeaders },
             });
         }
 
@@ -78,10 +65,10 @@ export default async function handler(req) {
 
         if (!apiKey) {
             return new Response(JSON.stringify({
-                error: 'API key not configured. Please add OPENAI_API_KEY in Vercel Environment Variables.'
+                response: 'The AI assistant is not configured yet. Please contact Mazin directly at mzn.93.20@gmail.com'
             }), {
-                status: 500,
-                headers: { 'Content-Type': 'application/json' },
+                status: 200,
+                headers: { 'Content-Type': 'application/json', ...corsHeaders },
             });
         }
 
@@ -97,32 +84,36 @@ export default async function handler(req) {
                     { role: 'system', content: mazinContext },
                     { role: 'user', content: message },
                 ],
-                max_tokens: 500,
+                max_tokens: 300,
                 temperature: 0.7,
             }),
         });
 
         if (!response.ok) {
-            const errorData = await response.json();
+            const errorData = await response.json().catch(() => ({}));
             console.error('OpenAI API Error:', errorData);
-            return new Response(JSON.stringify({ error: 'AI service error. Check API key.' }), {
-                status: 500,
-                headers: { 'Content-Type': 'application/json' },
+            return new Response(JSON.stringify({
+                response: 'I apologize, but I\'m having trouble connecting right now. Please email Mazin at mzn.93.20@gmail.com'
+            }), {
+                status: 200,
+                headers: { 'Content-Type': 'application/json', ...corsHeaders },
             });
         }
 
         const data = await response.json();
-        const aiResponse = data.choices[0]?.message?.content || 'Sorry, I could not generate a response.';
+        const aiResponse = data.choices[0]?.message?.content || 'I couldn\'t generate a response. Please try again.';
 
         return new Response(JSON.stringify({ response: aiResponse }), {
             status: 200,
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', ...corsHeaders },
         });
     } catch (error) {
         console.error('Error:', error);
-        return new Response(JSON.stringify({ error: 'Internal server error' }), {
-            status: 500,
-            headers: { 'Content-Type': 'application/json' },
+        return new Response(JSON.stringify({
+            response: 'Something went wrong. Please contact Mazin directly at mzn.93.20@gmail.com'
+        }), {
+            status: 200,
+            headers: { 'Content-Type': 'application/json', ...corsHeaders },
         });
     }
 }
