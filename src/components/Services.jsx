@@ -1,11 +1,4 @@
 import React from "react";
-import DownArrow from "../assets/images/svg/down-arrow.svg";
-import WebDevelopement from "../assets/images/svg/web-development.svg";
-import AppDevelopement from "../assets/images/svg/app-development.svg";
-import backendDev from "../assets/images/svg/backendDev.svg"
-import fullstackDev from "../assets/images/svg/fullstackDev.svg"
-import performanceDev from "../assets/images/svg/performanceDev.svg"
-import GalleryImg2 from "../assets/images/gallery/gallery-img2.jpg";
 import { Link } from "react-router-dom";
 
 const Services = () => {
@@ -20,128 +13,83 @@ const Services = () => {
           <div className="line"></div>
         </div>
         <h3 className="services-product-text fade_up">
-          BUILDING SMART, SCALABLE SOLUTIONS FROM FRONTEND TO BACKEND
+          ENGINEERING INTELLIGENCE INTO REALITY
         </h3>
         <p className="visoion-text fade_up">
-          I’m a Full-Stack Software Developer with a passion for creating reliable, high-performance applications. 
-With a strong foundation in both frontend and backend technologies, I specialize in building seamless user experiences, clean codebases, and efficient systems — from design to deployment.
+          I don't just build websites; I engineer intelligent systems. By combining cutting-edge Generative AI with robust full-stack engineering, I create autonomous agents and RAG pipelines that solve complex problems.
         </p>
         <div className="row services-row">
+          {/* Card 1: Generative AI Engines */}
           <div className="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-sm-6 services-column fade_up">
-            <Link to="#services-popup">
-              <div className="services-img">
-                <img src={WebDevelopement} alt="ui-ux" />
+            <div className="services-img glass-card" style={{ padding: '30px', borderRadius: '20px', height: '100%' }}>
+              <div style={{ marginBottom: '20px' }}>
+                {/* Placeholder for GenAI Icon */}
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2L15 8L21 9L16.5 13.5L18 19.5L12 16.5L6 19.5L7.5 13.5L3 9L9 8L12 2Z" stroke="#00E5FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
               </div>
-              <p className="services-text">Frontend Development</p>
-              <p className="molestie">
-                Building responsive, user-friendly interfaces using React, Angular, and modern JavaScript frameworks.
+              <p className="services-text" style={{ color: '#fff', marginBottom: '10px' }}>Generative AI Engines</p>
+              <p className="molestie" style={{ color: '#a0a0a0' }}>
+                Developing custom LLM solutions using OpenAI and open-source models. Fine-tuning models for specific business domains.
               </p>
-              <img
-                className="down-arrow-svg"
-                src={DownArrow}
-                alt="down-arrow"
-              />
-            </Link>
+            </div>
           </div>
+
+          {/* Card 2: Intelligent Search (RAG) */}
           <div className="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-sm-6 services-column fade_up">
-            <Link to="#services-popup">
-              <div className="services-img services-img2">
-                <img src={backendDev} alt="visual-branding" />
+            <div className="services-img glass-card" style={{ padding: '30px', borderRadius: '20px', height: '100%' }}>
+              <div style={{ marginBottom: '20px' }}>
+                {/* Placeholder for RAG Icon */}
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="11" cy="11" r="8" stroke="#BF5AF2" strokeWidth="2" />
+                  <path d="M21 21L16.65 16.65" stroke="#BF5AF2" strokeWidth="2" strokeLinecap="round" />
+                </svg>
               </div>
-              <p className="services-text services-text2">Backend Development</p>
-              <p className="molestie">
-                Developing scalable APIs and server-side logic using Node.js, Express, .NET, and SQL/NoSQL databases.
+              <p className="services-text" style={{ color: '#fff', marginBottom: '10px' }}>Intelligent Search (RAG)</p>
+              <p className="molestie" style={{ color: '#a0a0a0' }}>
+                Building "Chat with your Data" systems using LangChain and Vector Databases. Extracting insights from PDFs, docs, and databases.
               </p>
-              <img
-                className="down-arrow-svg"
-                src={DownArrow}
-                alt="down-arrow"
-              />
-            </Link>
+            </div>
           </div>
+
+          {/* Card 3: AI Agents */}
           <div className="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-sm-6 services-column fade_up">
-            <Link to="#services-popup">
-              <div className="services-img services-img3">
-                <img src={fullstackDev} alt="web-development" />
+            <div className="services-img glass-card" style={{ padding: '30px', borderRadius: '20px', height: '100%' }}>
+              <div style={{ marginBottom: '20px' }}>
+                {/* Placeholder for Agent Icon */}
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="3" width="18" height="18" rx="2" stroke="#00E5FF" strokeWidth="2" />
+                  <path d="M9 9H15" stroke="#00E5FF" strokeWidth="2" strokeLinecap="round" />
+                  <path d="M9 15H15" stroke="#00E5FF" strokeWidth="2" strokeLinecap="round" />
+                </svg>
               </div>
-              <p className="services-text services-text3">Full-Stack Integration</p>
-              <p className="molestie">
-                Integrating frontend and backend systems into seamless user experiences with CI/CD and cloud deployment.
+              <p className="services-text" style={{ color: '#fff', marginBottom: '10px' }}>AI Agents & Automation</p>
+              <p className="molestie" style={{ color: '#a0a0a0' }}>
+                Creating autonomous agents with LlamaIndex that can browse the web, reason through tasks, and execute complex workflows.
               </p>
-              <img
-                className="down-arrow-svg"
-                src={DownArrow}
-                alt="down-arrow"
-              />
-            </Link>
+            </div>
           </div>
+
+          {/* Card 4: Full-Stack AI */}
           <div className="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-sm-6 services-column fade_up">
-            <Link to="#services-popup">
-              <div className="services-img services-img4">
-                <img src={performanceDev} alt="app-development" />
+            <div className="services-img glass-card" style={{ padding: '30px', borderRadius: '20px', height: '100%' }}>
+              <div style={{ marginBottom: '20px' }}>
+                {/* Placeholder for Full Stack Icon */}
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#BF5AF2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M2 17L12 22L22 17" stroke="#BF5AF2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M2 12L12 17L22 12" stroke="#BF5AF2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
               </div>
-              <p className="services-text services-text4">Performance Optimization</p>
-              <p className="molestie">
-                Profiling and optimizing web applications for speed, SEO, and accessibility.
+              <p className="services-text" style={{ color: '#fff', marginBottom: '10px' }}>Full-Stack AI Integration</p>
+              <p className="molestie" style={{ color: '#a0a0a0' }}>
+                Seamlessly serving AI models via FastAPI microservices and integrating them into high-performance React & Flutter apps.
               </p>
-              <img
-                className="down-arrow-svg"
-                src={DownArrow}
-                alt="down-arrow"
-              />
-            </Link>
+            </div>
           </div>
         </div>
       </section>
       {/* <!-- ====================================== Section Services End ===================================== --> */}
-      {/* <!-- ====================================== Section Services Pop Up ===================================== --> */}
-      <div id="services-popup" className="popup-container">
-        <div className="popup-content popup-content2">
-          <Link to="#" className="close">
-            &times;
-          </Link>
-          <h2 className="simple-steps">UI/UX DESIGN</h2>
-          <img
-            className="blog-popup-img1"
-            src={GalleryImg2}
-            alt="gallery-img8"
-          />
-          <p className="blog-sit-text">
-            Just because we cant get out and about like we normally would,
-            doesn’t mean we have to taking pictures. There’s still plenty you
-            can do, provided you are prepared to use some imagination. Here are
-            a few ideas to keep you shooting until normal life resumes.
-          </p>
-          <p className="blog-sit-text">
-            Most photographers love to shoot the unusual, and you don’t get much
-            more unusual than These Unprecedented Times. Right now everything
-            counts as out of the ordinary. There are a number of remarkable
-            things about these lockdown days that are worth photographing now we
-            can remember them when it is all over.
-          </p>
-          <p className="blog-sit-text">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga
-            consequatur delectus porro sapiente molestias, magni quasi sed, enim
-            corporis omnis doloremque soluta inventore dolorum consequuntur quo
-            obcaecati rerum sit non.
-          </p>
-          <h2 className="simple-steps services-popup-text">What Is Ui/Ux?</h2>
-          <p className="blog-sit-text">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga
-            consequatur delectus porro sapiente molestias, magni quasi sed, enim
-            corporis omnis doloremque soluta inventore dolorum consequuntur quo
-            obcaecati rerum sit non.
-          </p>
-          <p className="blog-sit-text">
-            treets empty that are usually busy are remarkable and can evoke the
-            sense of historical pictures from before the invention of the
-            motorcar. Other things that are different at the moment will be
-            queues to get into stores and the lines marked out on the floor to
-            show how far apart we should be.
-          </p>
-        </div>
-      </div>
-      {/* <!-- ====================================== Services PopUp End ===================================== --> */}
     </>
   );
 };

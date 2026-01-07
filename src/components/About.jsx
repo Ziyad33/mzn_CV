@@ -30,9 +30,9 @@ const AboutSection = () => {
           <div className="line"></div>
         </div>
         <p className="section-sub-text about-sub-text zoom_in">
-          Hi, I'm <span>Mazin Musallam</span>, a passionate and results-driven Full-Stack Software Developer with a Bachelor’s Degree in Computer Science (Security & Forensics). I thrive on solving complex challenges and delivering innovative solutions that make a real-world impact. Currently, I am honing my skills at iNNOVTEQ, where I contribute to cutting-edge projects at BSP in Brunei.
-With expertise in both front-end and back-end development, I bring to the table extensive experience in building responsive web applications, mobile apps, and server-side systems. My technical stack includes Angular, Node.js, MongoDB, TypeScript, and more. I’m also skilled in virtual and augmented reality development, reflecting my enthusiasm for emerging technologies.
-Beyond coding, I believe in continuous learning and professional growth. For me, exploring new tools and technologies every year is not just a goal but a personal commitment. Outside of work, I’m a lifelong learner and enjoy creating meaningful digital experiences.
+          Hi, I'm <span>Mazin Musallam</span>, an AI Engineer and Full-Stack Developer with a passion for building intelligent systems. My journey started in traditional software engineering, where I mastered the art of building scalable applications. Now, I focus on the intersection of Software Engineering and Generative AI, creating agentic workflows and LLM-powered applications.
+          <br /><br />
+          Recently, I have been diving deep into the "Builder" and "Agent" phases of AI development, mastering tools like LangChain, LlamaIndex, and OpenAI's API. I combine my solid engineering foundation with cutting-edge AI techniques to build systems that don't just process data, but understand and act on it.
         </p>
         <div className="about-detail-main">
           <p className="about-detail">Name</p>

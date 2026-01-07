@@ -1,488 +1,173 @@
-import React, { useEffect, useRef, useState } from "react";
-import ProfileImg from "../assets/images/mzn.png";
-import EmailSvg from "../assets/images/svg/email-svg.svg";
-import BehanceSvg from "../assets/images/svg/behance-svg.svg";
-import DribleSvg from "../assets/images/svg/drribale-svg.svg";
-import MediumSvg from "../assets/images/svg/medium-svg.svg";
-import HomeSvg from "../assets/images/svg/home-svg.svg";
-import AboutSvg from "../assets/images/svg/about-svg.svg";
-import ResumeSvg from "../assets/images/svg/resume-svg.svg";
-import ServicesSvg from "../assets/images/svg/services-svg.svg";
-import PortfolioSvg from "../assets/images/svg/portfolio-svg.svg";
-import PricingSvg from "../assets/images/svg/pricing-svg.svg";
-import BlogSvg from "../assets/images/svg/blog-svg.svg";
-import ContactSvg from "../assets/images/svg/contact-svg.svg";
-import clientImg1 from "../assets/images/clients-img1.jpg";
-import clientImg2 from "../assets/images/clients-img2.jpg";
-import clientImg3 from "../assets/images/clients-img3.jpg";
-import clientImg4 from "../assets/images/clients-img4.jpg";
-import JessicaMainImg from "../assets/images/mzn_II.jpg";
-import CircularImg from "../assets/images/circular-img.png";
-import FlowerImg from "../assets/images/flower.png";
-import BrandLogo1 from "../assets/images/brand-logo1.png";
-import BrandLogo2 from "../assets/images/brand-logo2.png";
-import BrandLogo3 from "../assets/images/brand-logo3.png";
-import BrandLogo4 from "../assets/images/brand-logo4.png";
-import BrandLogo5 from "../assets/images/brand-logo5.png";
-import BrandLogo6 from "../assets/images/brand-logo6.png";
-import BrandLogo7 from "../assets/images/brand-logo7.png";
-import BrandLogo8 from "../assets/images/brand-logo8.png";
-import AboutSection from "./About";
-import Resume from "./Resume";
-import Services from "./Services";
-import Portfolio from "./Portfolio";
-import Pricing from "./Pricing";
-import Blog from "./Blog";
+import React from "react";
+import Sidebar from "./Sidebar";
 import Contact from "./Contact";
-import $ from "jquery";
-import CV from "../assets/pdf/olivia_resume.pdf";
-import { Link } from "react-router-dom";
+import ChatBot from "./ChatBot";
+
 const Home = () => {
-  //Text
-  const firstTexts = ["Problem Solver", "Developer", "Freelancer"];
-  const secondTexts = [
-    "Freelancer",
-    "Back-End Developer",
-    "Full Stack Developer",
-  ];
-  const intervalTime = 600;
-
-  const [firstTextIndex, setFirstTextIndex] = useState(0);
-  const [secondTextIndex, setSecondTextIndex] = useState(0);
-
-  useEffect(() => {
-    const firstTextTimeout = setTimeout(() => {
-      setFirstTextIndex((prevIndex) => (prevIndex + 1) % firstTexts.length);
-    }, intervalTime * 3);
-
-    return () => clearTimeout(firstTextTimeout);
-  }, [firstTextIndex]);
-
-  useEffect(() => {
-    const secondTextTimeout = setTimeout(() => {
-      setSecondTextIndex((prevIndex) => (prevIndex + 1) % secondTexts.length);
-    }, intervalTime * 3);
-
-    return () => clearTimeout(secondTextTimeout);
-  }, [secondTextIndex]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setFirstTextIndex((prevIndex) => (prevIndex + 1) % firstTexts.length);
-      setSecondTextIndex((prevIndex) => (prevIndex + 1) % secondTexts.length);
-    }, intervalTime * 7);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  // Logo marquee
-  useEffect(() => {
-    document.querySelectorAll(".logos").forEach(function (logosContainer) {
-      const copy = logosContainer.querySelector(".logos-slide").cloneNode(true);
-      logosContainer.appendChild(copy);
-    });
-  }, []);
-
-  // Toggle Btn
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const menuToggle = document.getElementById("menu-toggle");
-    const sideMenu = document.querySelector(".side-menu");
-    const menuItems = document.querySelectorAll(".menu-list-main li");
-
-    const handleMenuToggle = () => {
-      setMenuOpen(!menuOpen);
-      menuToggle.classList.toggle("open");
-      sideMenu.classList.toggle("show");
-    };
-
-    const handleMenuItemClick = (event) => {
-      event.preventDefault();
-      const linkElement = event.currentTarget.querySelector("a");
-      if (linkElement) {
-        const targetId = linkElement.getAttribute("href").substring(1);
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-          targetElement.scrollIntoView({ behavior: "smooth" });
-        }
-        setMenuOpen(false);
-        menuToggle.classList.remove("open");
-        sideMenu.classList.remove("show");
-      }
-    };
-
-    if (menuToggle && sideMenu && menuItems.length > 0) {
-      menuToggle.addEventListener("click", handleMenuToggle);
-      menuItems.forEach((item) => {
-        item.addEventListener("click", handleMenuItemClick);
-      });
-
-      $(".hamburger").click(function () {
-        $(this).toggleClass("is-active");
-      });
-
-      return () => {
-        menuToggle.removeEventListener("click", handleMenuToggle);
-        menuItems.forEach((item) => {
-          item.removeEventListener("click", handleMenuItemClick);
-        });
-      };
-    }
-  }, [menuOpen]);
-
-  const [activeLink, setActiveLink] = useState("");
-
-  const handleClick = (event, id) => {
-    event.preventDefault();
-    setActiveLink(id);
-    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
-  };
   return (
-    <>
-      <button id="menu-toggle" className="menu-toggle-button">
-        <span className="hamburger" id="hamburger-1">
-          <span className="line"></span>
-          <span className="line"></span>
-          <span className="line"></span>
-        </span>
-      </button>
-      {/* <!-- ====================================== Side Menu ===================================== --> */}
-      <div className="side-menu">
-        <div className="profile-img-main">
-          <img className="zoom_in" src={ProfileImg} alt="profile-img" />
-          <h1 className="fade_up">
-            Mazin <span>Musallam</span>
-          </h1>
-          <h2 className="designer fade_up">{firstTexts[firstTextIndex]}</h2>
-          <div className="profile-media-icons-main fade_up">
-            <Link to="mailto:mzn.93.20@gmail.com" className="profile-media-icons">
-              <img src={EmailSvg} alt="email-svg" />
-            </Link>
-            {/* <Link to="https://www.behance.net" className="profile-media-icons">
-              <img src={BehanceSvg} alt="behance-svg" />
-            </Link>
-            <Link to="https://dribbble.com" className="profile-media-icons">
-              <img src={DribleSvg} alt="drribale-svg" />
-            </Link>
-            <Link to="https://medium.com" className="profile-media-icons">
-              <img src={MediumSvg} alt="medium-svg" />
-            </Link> */}
-          </div>
-        </div>
-        <div className="menu-list-main">
-          <ul>
-            <li
-              className={`active-menu-action ${
-                activeLink === "home" ? "active" : ""
-              }`}
-            >
-              <a
-                className="fade_right"
-                href="#home"
-                onClick={(e) => handleClick(e, "home")}
-              >
-                <img src={HomeSvg} alt="home-svg" />
-                Home
-              </a>
-            </li>
-            <li
-              className={`active-menu-action ${
-                activeLink === "about" ? "active" : ""
-              }`}
-            >
-              <a
-                className="fade_right"
-                href="#about"
-                onClick={(e) => handleClick(e, "about")}
-              >
-                <img src={AboutSvg} alt="home-svg" />
-                About
-              </a>
-            </li>
-            <li
-              className={`active-menu-action ${
-                activeLink === "resume" ? "active" : ""
-              }`}
-            >
-              <a
-                className="fade_right"
-                href="#resume"
-                onClick={(e) => handleClick(e, "resume")}
-              >
-                <img src={ResumeSvg} alt="home-svg" />
-                Resume
-              </a>
-            </li>
-            <li
-              className={`active-menu-action ${
-                activeLink === "services" ? "active" : ""
-              }`}
-            >
-              <a
-                className="fade_right"
-                href="#services"
-                onClick={(e) => handleClick(e, "services")}
-              >
-                <img src={ServicesSvg} alt="home-svg" />
-                What I Do
-              </a>
-            </li>
-            {/*<li
-              className={`active-menu-action ${
-                activeLink === "portfolio" ? "active" : ""
-              }`}
-            >
-              <a
-                className="fade_right"
-                href="#portfolio"
-                onClick={(e) => handleClick(e, "portfolio")}
-              >
-                <img src={PortfolioSvg} alt="home-svg" />
-                Portfolio
-              </a>
-            </li>
-            <li
-              className={`active-menu-action ${
-                activeLink === "pricing" ? "active" : ""
-              }`}
-            >
-              <a
-                className="fade_right"
-                href="#pricing"
-                onClick={(e) => handleClick(e, "pricing")}
-              >
-                <img src={PricingSvg} alt="home-svg" />
-                Pricing
-              </a>
-            </li>
-            <li
-              className={`active-menu-action ${
-                activeLink === "blog" ? "active" : ""
-              }`}
-            >
-              <a
-                className="fade_right"
-                href="#blog"
-                onClick={(e) => handleClick(e, "blog")}
-              >
-                <img src={BlogSvg} alt="home-svg" />
-                Blog
-              </a>
-            </li> */}
-            <li
-              className={`active-menu-action ${
-                activeLink === "contact" ? "active" : ""
-              }`}
-              id="contact-line"
-            >
-              <a
-                className="fade_right"
-                href="#contact"
-                onClick={(e) => handleClick(e, "contact")}
-              >
-                <img src={ContactSvg} alt="home-svg" />
-                Contact
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <div id="wrap">
-            <a
-  href="/mznCV.pdf"
-  download="mznCV.pdf"
-  rel="noreferrer"
-  className="btn-slide"
->
-  <span className="circle">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-    >
-      <path
-        className="download-svg"
-        d="M13 12H16L12 16L8 12H11V8H13V12ZM15 4H5V20H19V8H15V4ZM3 2.9918C3 2.44405 3.44749 2 3.9985 2H16L20.9997 7L21 20.9925C21 21.5489 20.5551 22 20.0066 22H3.9934C3.44476 22 3 21.5447 3 21.0082V2.9918Z"
-        fill="white"
-      />
-    </svg>
-  </span>
-  <span className="title">Download CV</span>
-  <span className="title-hover">Click Here</span>
-</a>{" "}
-          </div>
-        </div>
-      </div>
+    <div className="app-container">
+      {/* Sidebar */}
+      <Sidebar />
 
-      {/* <!-- ====================================== Side Menu End ===================================== --> */}
-      <div className="main-containe" data-bs-spy="scroll">
-        {/* <!-- ====================================== Section One ===================================== --> */}
-        <section className="section-one overflow-hidden" id="home">
-          <div className="row">
-            <div className="col-xxl-6 col-lg-6">
-              <h2 className="jessica-main-text zoom_in">
-                Mazin <span>Musallam</span>
-              </h2>
-              <h3 className="back-End-dev designer2">
-                {secondTexts[secondTextIndex]}
-              </h3>
-              <p className="best fade_down">
-                Expert in Angular, React, Node.js, .NET, and SQL. I develop full-stack solutions that power digital transformation across industries.
+      {/* Main Content */}
+      <main className="main-content">
+        {/* Hero Section */}
+        <section className="hero-section" id="home">
+          <h1 className="hero-headline">
+            Engineering<br />
+            Intelligence<br />
+            Into Reality
+          </h1>
+          <p className="hero-tagline">
+            <code>&lt;code&gt;</code> I build AI agents, RAG systems, and LLM-powered applications. <code>&lt;/code&gt;</code>
+          </p>
+          <a href="#services" className="hero-cta">
+            Explore My Work
+          </a>
+        </section>
+
+        {/* Stats Row */}
+        <div className="stats-row">
+          <div className="stat-item">
+            <span className="stat-number">7+</span>
+            <span className="stat-label">Years Experience</span>
+          </div>
+          <div className="stat-item">
+            <span className="stat-number">20+</span>
+            <span className="stat-label">Projects Delivered</span>
+          </div>
+          <div className="stat-item">
+            <span className="stat-number">15+</span>
+            <span className="stat-label">Technologies</span>
+          </div>
+          <div className="stat-item">
+            <span className="stat-number">3</span>
+            <span className="stat-label">AI Specializations</span>
+          </div>
+        </div>
+
+        {/* What I Do - Projects Section */}
+        <section className="services-section-new" id="services">
+          <h2 className="section-title">What I Do</h2>
+          <div className="services-grid">
+            <div className="service-card">
+              <h4>AI-Powered Image Analysis</h4>
+              <p>
+                Built a computer vision system using FastAPI microservices to extract critical information from images, enhancing data extraction efficiency for enterprise clients.
               </p>
-              <div className="section-one-btns-main fade_down">
-                {/* <div className="wrapper">
-                  <Link className="btn-hover" to="#">
-                    View Work
-                  </Link>
-                </div> */}
-                <div className="wrapper">
-                  <a className="btn-hover btn-hover2" href="#contact">
-                    Contact Me
-                  </a>
-                </div>
-              </div>
+              <a href="#contact" className="service-link">View Details →</a>
             </div>
-            <div className="col-xxl-6 col-lg-6 position-relative">
-              <img className="flower" src={FlowerImg} alt="flower" />
-              {/* <img
-                className="circular-img"
-                src={CircularImg}
-                alt="circular-img"
-              /> */}
-              <img
-                className="jessica-main-img zoom_in"
-                src={JessicaMainImg}
-                alt="jessica-main-img"
-              />
-              {/* <div className="worked-box">
-                <p className="worked-more">Worked with more than 100 people</p>
-                <div className="client-img-main position-relative">
-                  <img
-                    className="client-img client-img1"
-                    src={clientImg1}
-                    alt="clients-img1"
-                  />
-                  <img
-                    className="client-img client-img2"
-                    src={clientImg2}
-                    alt="clients-img2"
-                  />
-                  <img
-                    className="client-img client-img3"
-                    src={clientImg3}
-                    alt="clients-img3"
-                  />
-                  <img
-                    className="client-img client-img4"
-                    src={clientImg4}
-                    alt="clients-img4"
-                  />
-                  <p className="worked-more worked-more2"> 100+ Clients</p>
-                </div>
-              </div> */}
+
+            <div className="service-card">
+              <h4>Intelligent Search Systems</h4>
+              <p>
+                Developed "Chat with your Data" RAG pipelines that enable semantic search across corporate documents, PDFs, and databases using LangChain and Vector DBs.
+              </p>
+              <a href="#contact" className="service-link">View Details →</a>
+            </div>
+
+            <div className="service-card">
+              <h4>Autonomous AI Agents</h4>
+              <p>
+                Created multi-step reasoning agents with LlamaIndex that can autonomously research, analyze data, and execute complex business workflows.
+              </p>
+              <a href="#contact" className="service-link">View Details →</a>
+            </div>
+
+            <div className="service-card">
+              <h4>Full-Stack AI Integration</h4>
+              <p>
+                Architected end-to-end solutions connecting AI backends (FastAPI/Python) with Flutter mobile apps and React web frontends for seamless user experiences.
+              </p>
+              <a href="#contact" className="service-link">View Details →</a>
+            </div>
+
+            <div className="service-card">
+              <h4>Enterprise Web Applications</h4>
+              <p>
+                Delivered production-ready Angular and React applications for Brunei Shell Petroleum, handling critical business operations with robust Node.js backends.
+              </p>
+              <a href="#contact" className="service-link">View Details →</a>
+            </div>
+
+            <div className="service-card">
+              <h4>VR/AR Experiences</h4>
+              <p>
+                Developed immersive virtual and augmented reality applications, demonstrating versatility in cutting-edge interactive technologies.
+              </p>
+              <a href="#contact" className="service-link">View Details →</a>
             </div>
           </div>
         </section>
-        {/* <!-- ====================================== Section Marquee ===================================== --> */}
-        {/* <section className="Marquee-main overflow-hidden">
-          <h3 className="fade_up">Trusted by World Leading Brands</h3>
-          <div className="logos logos2">
-            <div className="logos-slide">
-              <div className="marquee__content">
-                <div className="marquee-img-main">
-                  <img
-                    className="brand-logos"
-                    src={BrandLogo1}
-                    alt="brand-logo1"
-                  />
+
+        {/* Education & Certifications Section */}
+        <section className="education-section" id="education" style={{ padding: '60px' }}>
+          <h2 className="section-title">Education & Certifications</h2>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '40px' }}>
+            {/* Education */}
+            <div>
+              <h3 style={{ color: '#BF5AF2', fontSize: '16px', marginBottom: '20px', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                Education
+              </h3>
+              <div className="service-card">
+                <h4>BSc Computer Science</h4>
+                <p style={{ color: '#BF5AF2', fontSize: '13px', marginBottom: '5px' }}>Security & Forensics Specialization</p>
+                <p style={{ color: '#00E5FF', fontSize: '12px', marginBottom: '10px' }}>Dual Degree Award</p>
+                <p style={{ fontSize: '13px', marginBottom: '8px' }}>
+                  <strong>Taylor's University, Malaysia</strong>
+                </p>
+                <p style={{ fontSize: '13px', marginBottom: '10px' }}>
+                  <strong>University of the West of England (UWE), UK</strong>
+                </p>
+                <p>
+                  Strong foundation in computer science with specialization in cybersecurity, now applied to building secure AI systems.
+                </p>
+              </div>
+            </div>
+
+            {/* AI Mastery Program */}
+            <div>
+              <h3 style={{ color: '#00E5FF', fontSize: '16px', marginBottom: '20px', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                AI Mastery Program
+              </h3>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }}>
+                <div className="service-card" style={{ borderTop: '3px solid #00E5FF' }}>
+                  <h4 style={{ color: '#00E5FF', fontSize: '14px' }}>Phase 1: Foundation</h4>
+                  <p style={{ fontWeight: '500', color: '#fff', fontSize: '13px', marginBottom: '8px' }}>Generative AI & Prompt Engineering</p>
+                  <p style={{ fontSize: '12px' }}>
+                    Google Cloud's GenAI course + DeepLearning.AI's ChatGPT Prompt Engineering.
+                  </p>
                 </div>
-                <div className="marquee-img-main">
-                  <img
-                    className="brand-logos"
-                    src={BrandLogo2}
-                    alt="brand-logo2"
-                  />
+
+                <div className="service-card" style={{ borderTop: '3px solid #BF5AF2' }}>
+                  <h4 style={{ color: '#BF5AF2', fontSize: '14px' }}>Phase 2: Builder</h4>
+                  <p style={{ fontWeight: '500', color: '#fff', fontSize: '13px', marginBottom: '8px' }}>LangChain & Production Systems</p>
+                  <p style={{ fontSize: '12px' }}>
+                    LangChain for LLM Applications + Building with ChatGPT API (RAG, Eval, Safety).
+                  </p>
                 </div>
-                <div className="marquee-img-main">
-                  <img
-                    className="brand-logos"
-                    src={BrandLogo3}
-                    alt="brand-logo3"
-                  />
-                </div>
-                <div className="marquee-img-main">
-                  <img
-                    className="brand-logos"
-                    src={BrandLogo4}
-                    alt="brand-logo4"
-                  />
-                </div>
-                <div className="marquee-img-main">
-                  <img
-                    className="brand-logos"
-                    src={BrandLogo5}
-                    alt="brand-logo5"
-                  />
-                </div>
-                <div className="marquee-img-main">
-                  <img
-                    className="brand-logos"
-                    src={BrandLogo6}
-                    alt="brand-logo6"
-                  />
-                </div>
-                <div className="marquee-img-main">
-                  <img
-                    className="brand-logos"
-                    src={BrandLogo7}
-                    alt="brand-logo7"
-                  />
-                </div>
-                <div className="marquee-img-main">
-                  <img
-                    className="brand-logos"
-                    src={BrandLogo8}
-                    alt="brand-logo8"
-                  />
-                </div>
-                <div className="marquee-img-main">
-                  <img
-                    className="brand-logos"
-                    src={BrandLogo7}
-                    alt="brand-logo9"
-                  />
+
+                <div className="service-card" style={{ borderTop: '3px solid #00E5FF' }}>
+                  <h4 style={{ color: '#00E5FF', fontSize: '14px' }}>Phase 3: Agent</h4>
+                  <p style={{ fontWeight: '500', color: '#fff', fontSize: '13px', marginBottom: '8px' }}>Agentic RAG & Multi-Agent</p>
+                  <p style={{ fontSize: '12px' }}>
+                    Building Agentic RAG with LlamaIndex for autonomous reasoning and tool use.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-        </section> */}
-        {/* <!-- ====================================== Section Marquee End ===================================== --> */}
-        {/* <!-- ====================================== Section About ===================================== --> */}
-        <AboutSection />
-        {/* <!-- ====================================== Section About End ===================================== --> */}
-        {/* <!-- ====================================== Section Education Experience ===================================== --> */}
-        <Resume />
-        {/* <!-- ====================================== Section Education Experience End ===================================== --> */}
-        {/* <!-- ====================================== Section Services ===================================== --> */}
-        <Services />
-        {/* <!-- ====================================== Section Services ===================================== --> */}
-        {/* <!-- ====================================== Section Portfolio ===================================== --> */}
-        <Portfolio />
-        {/* <!-- ====================================== Section Portfolio ===================================== --> */}
-        {/* <!-- ====================================== Section Pricing ===================================== --> */}
-        <Pricing />
-        {/* <!-- ====================================== Section Pricing ===================================== --> */}
-        {/* <!-- ====================================== Section Blogs ===================================== --> */}
-        <Blog />
-        {/* <!-- ====================================== Section Blogs ===================================== --> */}
-        {/* <!-- ====================================== Section Contact ===================================== --> */}
+        </section>
+
+        {/* Contact Section */}
         <Contact />
-        {/* <!-- ====================================== Section Contact ===================================== --> */}
-      </div>
-    </>
+      </main>
+
+      {/* Floating ChatBot */}
+      <ChatBot />
+    </div>
   );
 };
+
 export default Home;
