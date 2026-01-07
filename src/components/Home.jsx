@@ -55,7 +55,6 @@ const Home = () => {
               <p>
                 Built a computer vision system using FastAPI microservices to extract critical information from images, enhancing data extraction efficiency for enterprise clients.
               </p>
-              <a href="#contact" className="service-link">View Details →</a>
             </div>
 
             <div className="service-card">
@@ -63,7 +62,6 @@ const Home = () => {
               <p>
                 Developed "Chat with your Data" RAG pipelines that enable semantic search across corporate documents, PDFs, and databases using LangChain and Vector DBs.
               </p>
-              <a href="#contact" className="service-link">View Details →</a>
             </div>
 
             <div className="service-card">
@@ -71,7 +69,6 @@ const Home = () => {
               <p>
                 Created multi-step reasoning agents with LlamaIndex that can autonomously research, analyze data, and execute complex business workflows.
               </p>
-              <a href="#contact" className="service-link">View Details →</a>
             </div>
 
             <div className="service-card">
@@ -79,7 +76,6 @@ const Home = () => {
               <p>
                 Architected end-to-end solutions connecting AI backends (FastAPI/Python) with Flutter mobile apps and React web frontends for seamless user experiences.
               </p>
-              <a href="#contact" className="service-link">View Details →</a>
             </div>
 
             <div className="service-card">
@@ -87,7 +83,6 @@ const Home = () => {
               <p>
                 Delivered production-ready Angular and React applications for Brunei Shell Petroleum, handling critical business operations with robust Node.js backends.
               </p>
-              <a href="#contact" className="service-link">View Details →</a>
             </div>
 
             <div className="service-card">
@@ -95,7 +90,6 @@ const Home = () => {
               <p>
                 Developed immersive virtual and augmented reality applications, demonstrating versatility in cutting-edge interactive technologies.
               </p>
-              <a href="#contact" className="service-link">View Details →</a>
             </div>
           </div>
         </section>
