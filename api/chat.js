@@ -1,31 +1,31 @@
-// Vercel Edge Function for AI Chat - Using Google Gemini (FREE)
-// API Key: Set GEMINI_API_KEY in Vercel Dashboard → Settings → Environment Variables
+// Vercel Edge Function for AI Chat - Using Groq (FREE & FAST)
+// API Key: Set GROQ_API_KEY in Vercel Dashboard → Settings → Environment Variables
+// Get your free key at: https://console.groq.com/keys
 
 export const config = {
     runtime: 'edge',
 };
 
-// CORS headers
 const corsHeaders = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
 };
 
-const mazinContext = `You are Mazin's AI assistant. Answer professionally and concisely (2-3 sentences).
+const mazinContext = `You are Mazin's AI assistant. Answer professionally and concisely (2-3 sentences max).
 About Mazin Al-Maskari:
 - Full-Stack Developer turned AI Engineer, 7+ years experience.
-- Omani, based in Brunei (Bandar Seri Begawan).
+- Omani, based in Brunei.
 - Works at Innovateq for Brunei Shell Petroleum (BSP).
 
 Work Experience:
 - Military Technological College in Oman (2 years)
-- Petroleum Development Oman - PDO (2 years, Full-Stack Developer via Innovateq)
-- Brunei Shell Petroleum - BSP (current, AI Engineer via Innovateq)
+- Petroleum Development Oman - PDO (2 years)
+- Brunei Shell Petroleum - BSP (current)
 
-Skills: AI/ML, LangChain, LlamaIndex, RAG, FastAPI, React, Angular, Flutter, Node.js, .NET, Python.
-Projects: AI Image Analysis, RAG Search Systems, Autonomous AI Agents, Enterprise Web Apps.
-Education: BSc Computer Science (Security & Forensics) - Taylor's University Malaysia + UWE UK.
+Skills: AI/ML, LangChain, LlamaIndex, RAG, FastAPI, React, Angular, Flutter.
+Projects: AI Image Analysis, RAG Search, Autonomous AI Agents.
+Education: BSc Computer Science - Taylor's University Malaysia + UWE UK.
 Contact: mzn.93.20@gmail.com | +968 93373293`;
 
 export default async function handler(req) {
@@ -34,41 +34,38 @@ export default async function handler(req) {
 
     try {
         const { message } = await req.json();
-        const apiKey = process.env.GEMINI_API_KEY;
+        const apiKey = process.env.GROQ_API_KEY;
 
         if (!apiKey) {
-            return new Response(JSON.stringify({ response: 'Config Error: GEMINI_API_KEY is missing in Vercel Env Vars.' }), { status: 200, headers: { 'Content-Type': 'application/json', ...corsHeaders } });
+            return new Response(JSON.stringify({ response: 'Config Error: GROQ_API_KEY is missing. Add it in Vercel Environment Variables.' }), { status: 200, headers: { 'Content-Type': 'application/json', ...corsHeaders } });
         }
 
-        // Try gemini-pro which is more universally available
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`;
-
-        const response = await fetch(url, {
+        const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`
+            },
             body: JSON.stringify({
-                contents: [{ parts: [{ text: `${mazinContext}\n\nUser question: ${message}\n\nAnswer:` }] }],
-                generationConfig: {
-                    temperature: 0.7,
-                    maxOutputTokens: 256
-                }
+                model: 'llama-3.1-8b-instant',
+                messages: [
+                    { role: 'system', content: mazinContext },
+                    { role: 'user', content: message }
+                ],
+                max_tokens: 256,
+                temperature: 0.7
             })
         });
 
         if (!response.ok) {
-            const errorData = await response.json().catch(e => ({ error: { message: response.statusText } }));
-            console.error('Gemini API Error:', errorData);
+            const errorData = await response.json().catch(() => ({}));
             return new Response(JSON.stringify({
-                response: `API Error (${response.status}): ${JSON.stringify(errorData.error?.message || errorData)}`
+                response: `API Error (${response.status}): ${errorData.error?.message || 'Unknown error'}`
             }), { status: 200, headers: { 'Content-Type': 'application/json', ...corsHeaders } });
         }
 
         const data = await response.json();
-        const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-
-        if (!text) {
-            return new Response(JSON.stringify({ response: 'Error: No response generated.' }), { status: 200, headers: { 'Content-Type': 'application/json', ...corsHeaders } });
-        }
+        const text = data.choices?.[0]?.message?.content || 'No response generated.';
 
         return new Response(JSON.stringify({ response: text }), {
             status: 200,
