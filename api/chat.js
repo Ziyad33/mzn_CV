@@ -1,5 +1,6 @@
-// Vercel Edge Function for AI Chat
-// API Key: Set OPENAI_API_KEY in Vercel Dashboard → Settings → Environment Variables
+// Vercel Edge Function for AI Chat - Using Google Gemini (FREE)
+// API Key: Set GEMINI_API_KEY in Vercel Dashboard → Settings → Environment Variables
+// Get your free key at: https://aistudio.google.com/app/apikey
 
 export const config = {
     runtime: 'edge',
@@ -13,30 +14,28 @@ const corsHeaders = {
 };
 
 // Mazin's context
-const mazinContext = `
-You are Mazin's AI assistant on his portfolio website. Answer questions about him professionally and helpfully. Keep responses concise (2-3 sentences max).
+const mazinContext = `You are Mazin's AI assistant on his portfolio website. Answer questions about him professionally and helpfully. Keep responses concise (2-3 sentences max).
 
-## About Mazin Al-Maskari
+About Mazin Al-Maskari:
 - Full-Stack Developer turned AI Engineer with 7+ years of experience
 - Nationality: Omani, based in Brunei
 - Works at Innovateq for Brunei Shell Petroleum (BSP)
 
-## Skills
+Skills:
 - AI/ML: LangChain, LlamaIndex, OpenAI API, RAG systems, Vector DBs, FastAPI
 - Frontend: React, Angular, Flutter
 - Backend: Node.js, .NET, Python
 
-## Key Projects
-- AI-Powered Image Analysis for BSP
+Key Projects:
+- AI-Powered Image Analysis for BSP using FastAPI
 - RAG pipelines for semantic search
 - Autonomous AI Agents with LlamaIndex
+- Enterprise web apps for Brunei Shell Petroleum
 
-## Education
+Education:
 - BSc Computer Science (Security & Forensics) - Dual Degree from Taylor's University Malaysia + UWE UK
 
-## Contact
-- Email: mzn.93.20@gmail.com
-`;
+Contact: mzn.93.20@gmail.com`;
 
 export default async function handler(req) {
     // Handle CORS preflight
@@ -61,7 +60,7 @@ export default async function handler(req) {
             });
         }
 
-        const apiKey = process.env.OPENAI_API_KEY;
+        const apiKey = process.env.GEMINI_API_KEY;
 
         if (!apiKey) {
             return new Response(JSON.stringify({
@@ -72,26 +71,30 @@ export default async function handler(req) {
             });
         }
 
-        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        // Google Gemini API call
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${apiKey}`,
             },
             body: JSON.stringify({
-                model: 'gpt-4o-mini',
-                messages: [
-                    { role: 'system', content: mazinContext },
-                    { role: 'user', content: message },
+                contents: [
+                    {
+                        parts: [
+                            { text: `${mazinContext}\n\nUser question: ${message}\n\nRespond helpfully and concisely:` }
+                        ]
+                    }
                 ],
-                max_tokens: 300,
-                temperature: 0.7,
+                generationConfig: {
+                    temperature: 0.7,
+                    maxOutputTokens: 300,
+                }
             }),
         });
 
         if (!response.ok) {
             const errorData = await response.json().catch(() => ({}));
-            console.error('OpenAI API Error:', errorData);
+            console.error('Gemini API Error:', errorData);
             return new Response(JSON.stringify({
                 response: 'I apologize, but I\'m having trouble connecting right now. Please email Mazin at mzn.93.20@gmail.com'
             }), {
@@ -101,7 +104,7 @@ export default async function handler(req) {
         }
 
         const data = await response.json();
-        const aiResponse = data.choices[0]?.message?.content || 'I couldn\'t generate a response. Please try again.';
+        const aiResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || 'I couldn\'t generate a response. Please try again.';
 
         return new Response(JSON.stringify({ response: aiResponse }), {
             status: 200,
