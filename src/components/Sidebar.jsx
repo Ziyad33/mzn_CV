@@ -25,7 +25,7 @@ const Sidebar = () => {
                 </div>
                 <div className="info-item">
                     <span className="info-label">City:</span>
-                    <span className="info-value">Bandar Seri Begawan</span>
+                    <span className="info-value">Kuala Belait, Brunei</span>
                 </div>
                 <div className="info-item">
                     <span className="info-label">Experience:</span>
